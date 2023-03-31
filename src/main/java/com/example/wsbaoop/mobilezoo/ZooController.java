@@ -1,5 +1,7 @@
 package com.example.wsbaoop.mobilezoo;
 
+import com.example.wsbaoop.mobilezoo.person.Person;
+import com.example.wsbaoop.mobilezoo.person.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,5 +54,19 @@ public class ZooController {
 //        List<Animal> animals = jdbcTemplate.query("SELECT * FROM animal", new BeanPropertyRowMapper(Animal.class));
 
         return animals.toString();
+    }
+
+    private final PersonRepository personRepository;
+
+    @Autowired
+    public ZooController(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
+
+
+    @GetMapping("/test5")
+    public String test5() {
+        Person newperson = this.personRepository.save(new Person("kacper", "adminadmin", true));
+        return "zapisało " + newperson;
     }
 }
