@@ -22,13 +22,13 @@ public class AnimalController {
         animals.add(new Animal("bear", "badbear", true));
 
         model.addAttribute("animals", animals);
-        return "zootest";
+        return "animal/zootest";
     }
 
     @GetMapping("/new")
     public String newAnimal(Model model) {
         model.addAttribute("animal", new Animal());
-        return "newanimal";
+        return "animal/newanimal";
     }
 
     @PostMapping("/add")
@@ -36,7 +36,7 @@ public class AnimalController {
         System.out.println(newAnimal);
         Animal.savedAnimals.add(newAnimal);
         model.addAttribute("animals", Animal.savedAnimals);
-        return "zootest";
+        return "animal/zootest";
     }
 
 }
