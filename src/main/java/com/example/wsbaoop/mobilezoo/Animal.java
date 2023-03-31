@@ -1,5 +1,7 @@
 package com.example.wsbaoop.mobilezoo;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ public class Animal {
 
     public static List<Animal> savedAnimals = new ArrayList<>();
 
+    public Long id;
     public String specie;
     public String name;
     public Boolean alive;
@@ -52,5 +55,9 @@ public class Animal {
 
     public void setAlive(Boolean alive) {
         this.alive = alive;
+    }
+
+    public boolean save(JdbcTemplate jdbcTemplate) {
+        return jdbcTemplate.update("INSERT INTO animal(id, specie, name, alive)  VALUES(?,?,?,?)", this.id, this.specie, this.name, this.alive) > 0;
     }
 }
