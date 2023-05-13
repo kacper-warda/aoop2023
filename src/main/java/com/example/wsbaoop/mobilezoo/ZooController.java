@@ -3,6 +3,7 @@ package com.example.wsbaoop.mobilezoo;
 import com.example.wsbaoop.mobilezoo.person.Person;
 import com.example.wsbaoop.mobilezoo.person.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,16 +34,14 @@ public class ZooController {
 
     @GetMapping("/test3")
     public String test3() {
-        String sql = "INSERT INTO student (name, email) VALUES ("
-                + "'Nam Ha Minh', 'nam@codejava.net')";
 
-        int rows = jdbcTemplate.update(sql);
-        if (rows > 0) {
-            System.out.println("A new row has been inserted.");
-        }
+        String insertQuery = "INSERT INTO student (name, email) VALUES ('Kacper Warda', 'niepiszdomnie@wsb.pl')";
+        jdbcTemplate.update(insertQuery);
 
-        List<String> names = jdbcTemplate.queryForList("SELECT name FROM student", String.class);
-        return names.toString();
+        String selectQuery = "SELECT * FROM student";
+        List<Student> students = jdbcTemplate.query(selectQuery, new BeanPropertyRowMapper(Student.class));
+
+        return students.toString();
     }
 
     @GetMapping("/test4")

@@ -16,6 +16,10 @@ public class Person {
     private Boolean enabled;
     private Date dateCreated;
 
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     public Person() {
 
     }
@@ -26,6 +30,14 @@ public class Person {
         this.password = password;
         this.enabled = enabled;
         this.dateCreated = new Date(System.currentTimeMillis());
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Long getId() {

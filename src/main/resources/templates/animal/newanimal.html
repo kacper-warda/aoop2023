@@ -8,8 +8,8 @@
 <body>
 
 <section layout:fragment="custom-content">
-    <h2>Create new animal</h2>
 
+    <h2>Create new animal</h2>
 
     <form method="post" th:action="@{/animal/add}" th:object="${animal}">
         <input id="specie" placeholder="gatunek" th:field="*{specie}" type="text">

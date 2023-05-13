@@ -44,21 +44,21 @@
 
     <table class="table table-striped">
         <tr>
-            <th th:text="#{animal.specie}"></th>
+            <th th:text="#{animal.specie}">gatunek</th>
             <th th:text="#{animal.name}">nazwa</th>
             <th th:text="#{animal.alive}">żyje</th>
         </tr>
         <tr th:each="animal: ${animals}">
-            <td th:text="${animal.specie}"></td>
-            <td th:text="${animal.name}"></td>
-            <td th:text="${animal.alive}"></td>
+            <td th:text="${animal.specie}">pies</td>
+            <td th:text="${animal.name}">szarik</td>
+            <td th:text="${animal.alive}">true</td>
         </tr>
     </table>
 
     <div class="col col-5">
         <ul class="list-group">
             <li class="list-group-item" th:each="animal: ${animals}">
-                <span th:text="${animal.name}"></span>
+                <span th:text="${animal.name}">szarik</span>
             </li>
         </ul>
     </div>
